@@ -1,0 +1,62 @@
+<div class="container-fluid searchForm">
+	<div class="row">
+			<form action="" class="input-group col-xs-12">
+				<input type="text" name="username" class="form-control" [(ngModel)] = "username" placeholder="github @username" (keyup)= "findUser()" id="">
+				<span class="input-group-addon" id=""><i class="glyphicon glyphicon-search"></i></span>
+			</form>
+	</div>
+</div>
+<div *ngIf = "user">
+	<div class="panel panel-default">
+	  <div class="panel-heading">
+	    <h3 class="panel-title"><a href="{{getUserProfileLink()}}">{{getUserFullName()}}</a></h3>
+	  </div>
+	  <div class="panel-body">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xs-4">
+					<img src="{{user.avatar_url}}" class="img-responsive" alt="">
+				</div>
+				<div class="col-xs-8">
+					<div class="stats">
+						<span class="label label-default"><strong>Public Repos: </strong>{{getUserPublicRepos()}}</span>
+						<span class="label label-primary"><strong>Public Gists: </strong> {{getUserPublicGists()}}</span>
+						<span class="label label-success"><strong>Followers: </strong>{{getUserFollowers()}}</span>
+						<span class="label label-info"><strong>Hireable: </strong>{{getUserHire()}}</span>
+					</div>
+					<div class="info">
+						<ul class="list-group">
+							<li class="list-group-item">{{getUsername()}}</li>
+							<li class="list-group-item">{{getUserLocation()}}</li>
+							<li class="list-group-item">{{getUserEmail()}}</li>
+							<li class="list-group-item">{{getUserBio()}}</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	  </div>
+	</div>
+	<div class="panel panel-default">
+	   <div class="panel-heading">
+		 <h3 class="panel-title">Repositories</h3>
+	    </div>
+		<div class="panel-body">
+			<div class="container-fluid" *ngFor = "let repo of repos">
+				<div class="row">
+					<div class="col-xs-8">
+						<h3><a href="{{getRepoUrl(repo)}}" target="_blank">{{getRepoName(repo)}}</a></h3>
+						<p>{{getRepoDesc(repo)}}</p>
+					</div>
+					<div class="col-xs-4">
+						<div class="repoStats">
+							<span class="label label-default"><strong>Watchers: </strong>{{getRepoWatchers(repo)}}</span>
+							<span class="label label-primary"><strong>Forks: </strong> {{getRepoForks(repo)}}</span>
+						</div>
+					</div>
+				</div>
+				<hr>
+			</div>
+	    </div>
+	</div>  
+</div>
